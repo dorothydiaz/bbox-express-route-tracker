@@ -7,8 +7,6 @@ $configData = Helper::appClasses();
 @section('title', 'Add Role')
 
 @section('content')
-<h4>Add Role</h4>
-
 <div class="row justify-content-center">
     <div class="col-md-8">
 
@@ -54,7 +52,7 @@ $configData = Helper::appClasses();
                     </div>
 
                     <div class="mb-3 row">
-                        <button type="submit" class="btn btn-primary">Add Role</button>
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Role">
                     </div>
 
                 </form>

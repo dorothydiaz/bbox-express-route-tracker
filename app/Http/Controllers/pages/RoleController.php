@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;

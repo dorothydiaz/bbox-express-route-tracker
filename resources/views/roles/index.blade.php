@@ -7,13 +7,11 @@ $configData = Helper::appClasses();
 @section('title', 'Manage Roles')
 
 @section('content')
-<h4>Manage Roles</h4>
-
 <div class="card">
     <div class="card-header">Manage Roles</div>
     <div class="card-body">
         @can('create-role')
-            <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm my-2">Add New Role</a>
+            <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Role</a>
         @endcan
         <table class="table table-striped table-bordered">
             <thead>
@@ -33,16 +31,16 @@ $configData = Helper::appClasses();
                             @csrf
                             @method('DELETE')
 
-                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-warning btn-sm">Show</a>
+                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
 
                             @if ($role->name!='Super Admin')
                                 @can('edit-role')
-                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
                                 @endcan
 
                                 @can('delete-role')
                                     @if ($role->name!=Auth::user()->hasRole($role->name))
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this role?');">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this role?');"><i class="bi bi-trash"></i> Delete</button>
                                     @endif
                                 @endcan
                             @endif
@@ -59,9 +57,31 @@ $configData = Helper::appClasses();
                 @endforelse
             </tbody>
         </table>
-
-        {{ $roles->links() }}
-
     </div>
+</div>
+<div class="mb-3 row mt-3">
+
+    <!-- Custom Pagination UI -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            <li class="page-item first">
+                <a class="page-link" href="#"><i class="ti ti-chevrons-left ti-xs"></i></a>
+            </li>
+            <li class="page-item prev">
+                <a class="page-link" href="#"><i class="ti ti-chevron-left ti-xs"></i></a>
+            </li>
+            @for ($i = 1; $i <= $roles->lastPage(); $i++)
+                <li class="page-item {{ $i == $roles->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $roles->url($i) }}">{{ $i }}</a>
+                </li>
+            @endfor
+            <li class="page-item next">
+                <a class="page-link" href="#"><i class="ti ti-chevron-right ti-xs"></i></a>
+            </li>
+            <li class="page-item last">
+                <a class="page-link" href="#"><i class="ti ti-chevrons-right ti-xs"></i></a>
+            </li>
+        </ul>
+    </nav>
 </div>
 @endsection

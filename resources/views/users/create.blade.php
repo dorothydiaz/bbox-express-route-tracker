@@ -8,7 +8,6 @@ $configData = Helper::appClasses();
 
 @section('content')
 <h4>Add User</h4>
-
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">

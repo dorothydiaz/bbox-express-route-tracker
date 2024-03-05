@@ -7,8 +7,6 @@ $configData = Helper::appClasses();
 @section('title', 'Edit Role')
 
 @section('content')
-<h4>Edit Role</h4>
-
 <div class="row justify-content-center">
     <div class="col-md-8">
 

@@ -10,7 +10,7 @@ class LMSG44RouteController extends Controller
 {
   public function showRoutes()
   {
-    $routes = LmsG44Route::all();
+    $routes = LmsG44Route::paginate(5);
     return view('content.pages.route-planner.pages-optimized-routes', ['routes' => $routes]);
   }
 

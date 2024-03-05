@@ -52,6 +52,29 @@ $configData = Helper::appClasses();
       </div>
     </div>
   </div>
+        <!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-end mt-3">
+        <li class="page-item first">
+            <a class="page-link" href="#"><i class="ti ti-chevrons-left ti-xs"></i></a>
+        </li>
+        <li class="page-item prev">
+            <a class="page-link" href="#"><i class="ti ti-chevron-left ti-xs"></i></a>
+        </li>
+        <!-- Display Pagination Links -->
+        @for ($i = 1; $i <= $routes->lastPage(); $i++)
+            <li class="page-item {{ $i == $routes->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $routes->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item next">
+            <a class="page-link" href="#"><i class="ti ti-chevron-right ti-xs"></i></a>
+        </li>
+        <li class="page-item last">
+            <a class="page-link" href="#"><i class="ti ti-chevrons-right ti-xs"></i></a>
+        </li>
+    </ul>
+</nav>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
