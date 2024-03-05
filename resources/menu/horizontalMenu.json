@@ -32,6 +32,25 @@
       "slug": "pages-track-vehicles"
     },
     {
+      "name": "Settings",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": "route-optimization",
+      "submenu": [
+        {
+          "url": "roles",
+          "name": "Manage Roles",
+          "icon": "menu-icon tf-icons ti ti-user-shield",
+          "slug": "roles"
+        },
+        {
+          "url": "users",
+          "name": "Manage Users",
+          "icon": "menu-icon tf-icons ti ti-user-cog",
+          "slug": "users"
+        }
+      ]
+    },
+    {
       "url": "page-2",
       "icon": "menu-icon tf-icons ti ti-file",
       "name": "Page 2",

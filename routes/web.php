@@ -3,11 +3,10 @@
 use App\Http\Controllers\pages\Page2;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pages\HomePage;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\authentications\LoginBasic;
+use App\Http\Controllers\pages\RoleController;
+use App\Http\Controllers\pages\UserController;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\pages\LMSG44RouteController;
-use App\Http\Controllers\authentications\RegisterBasic;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +18,34 @@ use App\Http\Controllers\authentications\RegisterBasic;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Redirect to login page
+Route::redirect(uri: '/', destination: 'login');
 
-// Main Page Route
-Route::get('/', [HomePage::class, 'index'])->name('pages-home');
-Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// locale
-Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+  // Main Page Route
+  Route::get('/', [HomePage::class, 'index'])->name('pages-home');
+  Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
-// pages
-// Route Planner
-Route::get('/create-route', function () {
-  return view('content.pages.route-planner.pages-create-route');
+  // locale
+  Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+  // Route Planner
+  Route::get('/create-route', function () {
+    return view('content.pages.route-planner.pages-create-route');
+  });
+  Route::post('/save-route', [LMSG44RouteController::class, 'saveRoute']);
+  Route::get('/show-routes', [LMSG44RouteController::class, 'showRoutes']);
+
+  Route::resources([
+    'roles' => RoleController::class,
+    'users' => UserController::class,
+  ]);
 });
-Route::post('/save-route', [LMSG44RouteController::class, 'saveRoute']);
-Route::get('/show-routes', [LMSG44RouteController::class, 'showRoutes']);

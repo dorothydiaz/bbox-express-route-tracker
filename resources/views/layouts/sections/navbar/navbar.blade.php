@@ -16,9 +16,8 @@ $navbarDetached = ($navbarDetached ?? '');
       @if(isset($navbarFull))
       <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{url('/')}}" class="app-brand-link gap-2">
-          <span class="app-brand-logo demo">
-            @include('_partials.macros',["height"=>20])
-          </span>
+          <span class="mt-4"><img src="{{ asset('assets\img\logo\bbox-express-logo.png') }}" alt="logo" width="40" height="40"  style="margin-top: -25px;"/></span>
+
           <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span>
         </a>
       </div>
@@ -112,15 +111,6 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
               @endif
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">
-                  <span class="d-flex align-items-center align-middle">
-                    <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                    <span class="flex-grow-1 align-middle">Billing</span>
-                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
-                  </span>
-                </a>
-              </li>
               @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())
               <li>
                 <div class="dropdown-divider"></div>
@@ -160,7 +150,7 @@ $navbarDetached = ($navbarDetached ?? '');
               @foreach (Auth::user()->allTeams() as $team)
               {{-- Below commented code read by artisan command while installing jetstream. !! Do not remove if you want to use jetstream. --}}
 
-              {{-- <x-switchable-team :team="$team" /> --}}
+              <x-switchable-team :team="$team" />
               @endforeach
               @endif
               @endif
